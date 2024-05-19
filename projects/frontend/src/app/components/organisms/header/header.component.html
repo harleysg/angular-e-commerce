@@ -1,0 +1,16 @@
+
+<header class="sticky top-0 pt-1 from-[#1b0933] to-[#190930] bg-gradient-to-b z-[100] min-h-10 grid gap-y-2">
+  <div class="px-2 m-auto max-w-[1200px] flex justify-between items-center w-full">
+    <a [routerLink]="'/'" class="inline-flex gap-1">
+      <span class="inline-block text-3xl bg-gradient-to-r from-[#6a65f3] to-[#ce3aff] bg-clip-text text-transparent font-bold" style="transform: matrix(0.9, -0.3, 0.4, 1, 3.4, -3);">w</span>
+      <span class="text-xl bg-gradient-to-r from-[#6a65f3] to-[#ce3aff] bg-clip-text text-transparent">ebMarket</span>
+    </a>
+    <app-navigation></app-navigation>
+  </div>
+  @if (useBackButton()) {
+    <nav class="px-3 pb-2 m-auto max-w-[1200px] w-full flex justify-between">
+      <app-button (click)="back()">Back</app-button>
+      <span>{{pageTitle()}}</span>
+    </nav>
+  }
+</header>
