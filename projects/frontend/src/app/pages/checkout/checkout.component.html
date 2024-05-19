@@ -1,0 +1,72 @@
+<section class="body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col w-full mb-20 text-center">
+      <h1 class="mb-2 text-3xl font-medium sm:text-4xl title-font">Checkout page</h1>
+    </div>
+    @if(cartStore.productsCount()) {
+    <div class="w-full mx-auto overflow-auto lg:w-2/3">
+      <div class="flex justify-end p-2">
+        <button (click)="clearAll()"
+          class="flex min-w-24 px-6 py-2 text-lg text-white bg-purple-800 border-0 rounded focus:outline-none hover:bg-purple-500 hover:text-[#1b0933]">
+          Clear all
+        </button>
+      </div>
+      <table class="w-full text-left whitespace-no-wrap table-auto">
+        <thead>
+          <tr class="text-gray-900 bg-gray-100 title-font text-sm font-medium tracking-wider">
+            <th class="px-4 py-3">Name</th>
+            <th class="px-4 py-3">Qty</th>
+            <th class="px-4 py-3">Price</th>
+            <th class="px-4 py-3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of cartStore.products(); track $index) {
+          <tr class="hover:bg-purple-500 hover:text-[#1b0933]">
+            <td class="px-4 py-3">{{item.title}}</td>
+            <td class="px-4 py-3">{{item.qty}}</td>
+            <td class="px-4 py-3">{{item.price | currency}}</td>
+            <td>
+              <ng-template [ngTemplateOutlet]="removeCtaRef" [ngTemplateOutletContext]="{id: item.id}"></ng-template>
+            </td>
+          </tr>
+          }
+
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <hr class="border-gray-700 border-t-1" />
+            </td>
+          </tr>
+          <tr class="text-lg not-italic font-bold">
+            <td class="px-4 py-3" colspan="2">Total:</td>
+            <td class="px-4 py-3">{{cartStore.totalAmount() | currency}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
+      <ng-template [ngTemplateOutlet]="proceedToPayRef"></ng-template>
+    </div>
+    } @else {
+    <div class="flex flex-col w-full mb-20 text-center">
+      <h3 class="my-2 text-3xl font-medium sm:text-2xl title-font">The shopping cart is empty</h3>
+    </div>
+    }
+  </div>
+</section>
+
+<ng-template #removeCtaRef let-id="id">
+  <button class="flex px-2 bg-purple-800 text-white border-0 rounded focus:outline-none "
+    (click)="removeItem(id)">
+    X
+  </button>
+</ng-template>
+
+<ng-template #proceedToPayRef let-id="id">
+  <button class="flex justify-center min-w-24 px-6 py-2 ml-auto text-white bg-purple-800 border-0 rounded focus:outline-none hover:bg-purple-500 hover:text-[#1b0933]"
+    (click)="onProceedToPay()">
+    Pay
+  </button>
+</ng-template>
