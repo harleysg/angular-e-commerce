@@ -1,0 +1,11 @@
+<section class="body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="grid grid-cols-products gap-2">
+      @for (product of products(); track product.id) {
+        <app-card [product]="product" (addToCartEvent)="addToCart($event)"/>
+      } @empty {
+        Empty list of users
+      }
+    </div>
+  </div>
+</section>
