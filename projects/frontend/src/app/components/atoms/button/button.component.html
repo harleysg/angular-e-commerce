@@ -1,0 +1,13 @@
+<button
+  (click)="emitter.emit()"
+  [disabled]="disabled"
+  [ngClass]="{
+    'text-slate-500 cursor-not-allowed': disabled,
+    'hover:text-amber-400': style() == 'light',
+    'cursor-pointer focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#471773,#8678f9)] hover:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#471773,#8678f9)]': !disabled && style() == 'dark',
+    'border-1 border border-double border-slate-800 border-transparent bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] bg-origin-border px-3 py-2 text-slate-200 transition-all duration-500 [background-clip:padding-box,_border-box] focus:outline-none': style() == 'dark'
+  }"
+  class='w-min min-w-fit px-0.5 py-0.5 rounded-sm'>
+  <ng-content select="icon"></ng-content>
+  <ng-content></ng-content>
+</button>
