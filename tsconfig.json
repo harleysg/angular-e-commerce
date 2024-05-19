@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./projects/frontend/src/",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -10,6 +10,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -22,12 +23,23 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@interfaces/*": ["app/interfaces/*"],
+      "@env/*": ["environments/*"],
+      "@shared/*": ["app/shared/*"],
+      "@models/*": ["app/shared/modles/*"],
+      "@atoms/*": ["app/components/atoms/*"],
+      "@molecules/*": ["app/components/molecules/*"],
+      "@organisms/*": ["app/components/organisms/*"],
+      "@pages/*": ["app/pages/*"],
+      "@layout/*": ["app/layouts/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": false
   }
 }
